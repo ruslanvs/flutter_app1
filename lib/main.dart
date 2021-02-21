@@ -4,6 +4,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app1/device_contacts.dart';
 
 import 'news_tab.dart';
 import 'profile_tab.dart';
@@ -95,6 +96,10 @@ class _PlatformAdaptingHomePageState extends State<PlatformAdaptingHomePage> {
             label: ProfileTab.title,
             icon: ProfileTab.iosIcon,
           ),
+          BottomNavigationBarItem(
+            label: DeviceContacts.title,
+            icon: DeviceContacts.iosIcon,
+          ),
         ],
       ),
       tabBuilder: (context, index) {
@@ -113,6 +118,11 @@ class _PlatformAdaptingHomePageState extends State<PlatformAdaptingHomePage> {
             return CupertinoTabView(
               defaultTitle: ProfileTab.title,
               builder: (context) => ProfileTab(),
+            );
+          case 3:
+            return CupertinoTabView(
+              defaultTitle: DeviceContacts.title,
+              builder: (context) => DeviceContacts(),
             );
           default:
             assert(false, 'Unexpected tab');
@@ -172,6 +182,15 @@ class _AndroidDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.push<void>(context,
                   MaterialPageRoute(builder: (context) => ProfileTab()));
+            },
+          ),
+          ListTile(
+            leading: DeviceContacts.androidIcon,
+            title: Text(DeviceContacts.title),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push<void>(context,
+                  MaterialPageRoute(builder: (context) => DeviceContacts()));
             },
           ),
           // Long drawer contents are often segmented.

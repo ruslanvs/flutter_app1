@@ -354,3 +354,35 @@ void showChoices(BuildContext context, List<String> choices) {
       assert(false, 'Unexpected platform $defaultTargetPlatform');
   }
 }
+
+class Button1 extends StatelessWidget {
+  final Widget child;
+  final Function onPressed;
+
+  Button1({
+    @required this.child,
+    @required this.onPressed,
+  });
+
+  @override
+  Widget build(context) {
+    return PlatformWidget(
+      androidBuilder: _buildAndroid,
+      iosBuilder: _buildIos,
+    );
+  }
+
+  Widget _buildAndroid(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: child,
+    );
+  }
+
+  Widget _buildIos(BuildContext context) {
+    return CupertinoButton(
+      onPressed: onPressed,
+      child: child,
+    );
+  }
+}
